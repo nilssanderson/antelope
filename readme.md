@@ -54,10 +54,10 @@ To create compressed, production-ready assets, run `gulp build`.
 Follow the below instructions to set up the BackstopJS tests and update the backstop.json file as needed if one does not exist.
 Open the folder in your command line, and install the needed dependencies:
 ```
-cd bower_components/BackstopJS
+cd bower/BackstopJS
 npm install
-
-cd antelope/bower_components/BackstopJS
+sudo npm install -g phantomjs
+sudo npm install -g casperjs
 cd ../../
 ```
 

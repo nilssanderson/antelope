@@ -1,5 +1,5 @@
 # Changelog
 
-## Version 1.0 (November 19, 2015)
+## Version 1.0 (December 03, 2015)
 
 Initial release.

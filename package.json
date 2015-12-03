@@ -1,13 +1,13 @@
 {
-  "name": "foundation-zurb-template",
+  "name": "antelope",
   "version": "1.0.0",
-  "description": "Official ZURB Template for Foundation for Sites.",
+  "description": "Starter webapp framework that scaffolds out a front-end web app using Gulp for the build process, Foundation 6 for the SCSS framework, BackstopJS for the automatic regression tests and SC5 Style guide generator for creating a living Styleguide.",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
     "build": "gulp build --production"
   },
-  "author": "ZURB <foundation@zurb.com>",
+  "author": "Nils Sanderson",
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.10.0",
@@ -31,11 +31,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zurb/foundation-zurb-template.git"
+    "url": "https://github.com/nilssanderson/antelope.git"
   },
   "bugs": {
-    "url": "https://github.com/zurb/foundation-sites/issues",
-    "email": "foundation@zurb.com"
+    "url": "https://github.com/nilssanderson/antelope/issues",
+    "email": "ns@bigmotive.com"
   },
   "private": true,
   "dependencies": {

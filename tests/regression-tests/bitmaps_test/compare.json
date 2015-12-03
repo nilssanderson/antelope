@@ -2,7 +2,7 @@
   "testPairs": [
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_0_header_0_phone.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_0_header_0_phone.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_0_header_0_phone.png",
       "selector": "header",
       "fileName": "0_0_header_0_phone.png",
       "label": "Antelope Regression Test",
@@ -10,7 +10,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_1_main_0_phone.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_1_main_0_phone.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_1_main_0_phone.png",
       "selector": "main",
       "fileName": "0_1_main_0_phone.png",
       "label": "Antelope Regression Test",
@@ -18,7 +18,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_2_footer_0_phone.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_2_footer_0_phone.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_2_footer_0_phone.png",
       "selector": "footer",
       "fileName": "0_2_footer_0_phone.png",
       "label": "Antelope Regression Test",
@@ -26,7 +26,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_3_body_0_phone.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_3_body_0_phone.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_3_body_0_phone.png",
       "selector": "body",
       "fileName": "0_3_body_0_phone.png",
       "label": "Antelope Regression Test",
@@ -34,7 +34,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_0_header_1_tablet_v.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_0_header_1_tablet_v.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_0_header_1_tablet_v.png",
       "selector": "header",
       "fileName": "0_0_header_1_tablet_v.png",
       "label": "Antelope Regression Test",
@@ -42,7 +42,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_1_main_1_tablet_v.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_1_main_1_tablet_v.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_1_main_1_tablet_v.png",
       "selector": "main",
       "fileName": "0_1_main_1_tablet_v.png",
       "label": "Antelope Regression Test",
@@ -50,7 +50,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_2_footer_1_tablet_v.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_2_footer_1_tablet_v.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_2_footer_1_tablet_v.png",
       "selector": "footer",
       "fileName": "0_2_footer_1_tablet_v.png",
       "label": "Antelope Regression Test",
@@ -58,7 +58,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_3_body_1_tablet_v.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_3_body_1_tablet_v.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_3_body_1_tablet_v.png",
       "selector": "body",
       "fileName": "0_3_body_1_tablet_v.png",
       "label": "Antelope Regression Test",
@@ -66,7 +66,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_0_header_2_tablet_h.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_0_header_2_tablet_h.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_0_header_2_tablet_h.png",
       "selector": "header",
       "fileName": "0_0_header_2_tablet_h.png",
       "label": "Antelope Regression Test",
@@ -74,7 +74,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_1_main_2_tablet_h.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_1_main_2_tablet_h.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_1_main_2_tablet_h.png",
       "selector": "main",
       "fileName": "0_1_main_2_tablet_h.png",
       "label": "Antelope Regression Test",
@@ -82,7 +82,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_2_footer_2_tablet_h.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_2_footer_2_tablet_h.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_2_footer_2_tablet_h.png",
       "selector": "footer",
       "fileName": "0_2_footer_2_tablet_h.png",
       "label": "Antelope Regression Test",
@@ -90,7 +90,7 @@
     },
     {
       "reference": "../../tests/regression-tests/bitmaps_reference/0_3_body_2_tablet_h.png",
-      "test": "../../tests/regression-tests/bitmaps_test/20151203-023607/0_3_body_2_tablet_h.png",
+      "test": "../../tests/regression-tests/bitmaps_test/20151203-093340/0_3_body_2_tablet_h.png",
       "selector": "body",
       "fileName": "0_3_body_2_tablet_h.png",
       "label": "Antelope Regression Test",

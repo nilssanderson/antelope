@@ -5,7 +5,7 @@
 
 ### What is this repository for? ###
 
-Starting development on a new project or adding to an existing project? Install now to have a consistent framework with automation.
+Starting development on a new project or adding to an existing project? Install now to have a framework with automation.
 
 
 ### What does this repository do? ###
@@ -58,7 +58,6 @@ cd bower_components/BackstopJS
 npm install
 
 cd antelope/bower_components/BackstopJS
-gulp genConfig
 cd ../../
 ```
 

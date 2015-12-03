@@ -1,0 +1,44 @@
+<h1 class="sg" name="zurb-template">ZURB Template</h1>
+<p class="sg"><strong>Please open all issues with this template on the main <a href="https://github.com/zurb/foundation-sites/issues" class="sg">Foundation for Sites</a> repo.</strong></p>
+<p class="sg">This is the official ZURB Template for use with <a href="http://foundation.zurb.com/sites" class="sg">Foundation for Sites</a>. We use this template at ZURB to deliver static code to our clients. It has a Gulp-powered build system with these features:</p>
+<ul>
+<li class="sg">Handlebars HTML templates with Panini</li>
+<li class="sg">Sass compilation and prefixing</li>
+<li class="sg">JavaScript concatenation</li>
+<li class="sg">Built-in BrowserSync server</li>
+<li class="sg">For production builds:
+<ul>
+<li class="sg">CSS compression</li>
+<li class="sg">JavaScript compression</li>
+<li class="sg">Image compression</li>
+</ul>
+</li>
+</ul>
+<h2 class="sg" name="installation">Installation</h2>
+<p class="sg">To use this template, your computer needs:</p>
+<ul>
+<li class="sg"><a href="https://nodejs.org/en/" class="sg">NodeJS</a> (0.10 or greater)</li>
+<li class="sg"><a href="https://git-scm.com/" class="sg">Git</a></li>
+</ul>
+<p class="sg">This template can be installed with the Foundation CLI, or downloaded and set up manually.</p>
+<h3 class="sg" name="using-the-cli">Using the CLI</h3>
+<p class="sg">Install the Foundation CLI with this command:</p>
+<pre class="sg"><code class="language-bash">npm install foundation-cli --global
+</code></pre>
+<p class="sg">Use this command to set up a blank Foundation for Sites project with this template:</p>
+<pre class="sg"><code class="language-bash">foundation new --framework sites --template zurb
+</code></pre>
+<p class="sg">The CLI will prompt you to give your project a name. The template will be downloaded into a folder with this name.</p>
+<h3 class="sg" name="manual-setup">Manual Setup</h3>
+<p class="sg">To manually set up the template, first download it with Git:</p>
+<pre class="sg"><code class="language-bash">git clone https://github.com/zurb/foundation-zurb-template projectname
+</code></pre>
+<p class="sg">Then open the folder in your command line, and install the needed dependencies:</p>
+<pre class="sg"><code class="language-bash">cd projectname
+npm install
+bower install
+</code></pre>
+<p class="sg">Finally, run <code>npm start</code> to run Gulp. Your finished site will be created in a folder called <code>dist</code>, viewable at this URL:</p>
+<pre class="sg"><code>http://localhost:8000
+</code></pre>
+<p class="sg">To create compressed, production-ready assets, run <code>npm run build</code>.</p>

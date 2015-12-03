@@ -1,0 +1,43 @@
+// @charset 'UTF-8';
+
+// Project created using Yeoman (generator-gulp-webapp) and Foundation | https://github.com/yeoman/generator-gulp-webapp
+// Sass folder structure setup with a combination of | http://thesassway.com/beginner/how-to-structure-a-sass-project & http://www.sitepoint.com/architecture-sass-project
+
+// Vendors and external stylesheets
+
+// Sass utilities
+@import "helpers/colors";
+@import "helpers/variables";
+@import "helpers/functions";
+@import "helpers/helpers";
+@import "helpers/mixins";
+@import "helpers/placeholders";
+
+// Vendor extensions
+
+// Base stuff
+// @import "base/normalize"; // A modern, HTML5-ready alternative to CSS resets | http://necolas.github.io/normalize.css
+// normalize included in Foundation
+@import "base/typography";
+
+// Layout related stylesheets
+@import "layout/grid";
+@import "layout/header";
+@import "layout/navigation";
+@import "layout/footer";
+@import "layout/forms";
+@import "layout/sidebar";
+
+// Components and modules
+@import "components/buttons";
+@import "components/carousel";
+@import "components/cover";
+@import "components/dropdown";
+@import "components/media";
+@import "components/thumbnails";
+
+// Page-specific stylesheets
+@import "pages/home";
+
+// Themes
+@import "themes/theme";

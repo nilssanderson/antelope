@@ -1,0 +1,64 @@
+{{!-- This is the base layout for your project, and will be used on every page. --}}
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Up to 70 Characters of Keyword-relevant text here</title>
+    <meta name='description' content='155 characters of message matching text with a call to action goes here'>
+    <meta name="author" content="Nils Sanderson">
+
+    <!-- Personal -->
+    <link rel='author' href='https://plus.google.com/thebaldwan' />
+
+    <!-- Company -->
+    <link rel='publisher' href='https://plus.google.com/thebaldwan' />
+
+    <!-- Social Media -->
+    <meta property='og:title' content='95 characters of message matching text with a call to action goes here' />
+    <meta property='og:type' content='article' />
+    <meta property='og:image' content='http://www.iacquire.com/some-thumbnail.jpg' />
+    <meta property='og:url' content='http://blog.iacquire.com' />
+    <meta property='og:description' content='297 characters of message matching text with a call to action goes here' />
+    <!-- <meta property='fb:admins' content='USER_ID' /> -->
+
+    <!-- Twitter Cards -->
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:url' content='http://www.nytimes.com/2012/02/19/arts/music/amid-police-presence-fans-congregate-for-whitney-houstons-funeral-in-newark.html'>
+    <meta name='twitter:title' content='Parade of Fans for Houston’s Funeral'>
+    <meta name='twitter:description' content='NEWARK – The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.'>
+    <meta name='twitter:image' content='http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg'>
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="{{root}}assets/css/app.css?v=1.0">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    {{!-- Pages you create in the src/pages/ folder are inserted here when the flattened page is created. --}}
+    {{> body}}
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <script src="{{root}}assets/js/app.js"></script>
+
+  </body>
+</html>

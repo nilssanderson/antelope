@@ -1,0 +1,66 @@
+// =============================================================================
+// Colors - Colors
+// =============================================================================
+
+// Variables
+$white: #FFFFFF;
+$black: #000000;
+$red: #F44336;
+$pink: #E91E63;
+$purple: #E91E63;
+$deep-purple: #673AB7;
+$indigo: #3F51B5;
+$blue: #2196F3;
+$light-blue: #03A9F4;
+$cyan: #00BCD4;
+$teal: #009688;
+$green: #4CAF50;
+$light-green: #8BC34A;
+$lime: #CDDC39;
+$yellow: #FFEB3B;
+$amber: #FFC107;
+$orange: #FF9800;
+$deep-orange: #FF5722;
+$brown: #795548;
+$grey: #9E9E9E;
+$blue-grey: #607D8B;
+
+
+// =============================================================================
+// Colors Styleguide
+// =============================================================================
+
+/*
+Colors
+
+markup:
+
+Styleguide 3.1
+*/
+
+
+// =============================================================================
+// Colors Code
+// =============================================================================
+
+.bg-white { background-color: $white !important; }
+.bg-black { background-color: $black !important; }
+.bg-red { background-color: $red !important; }
+.bg-pink { background-color: $pink !important; }
+.bg-purple { background-color: $purple !important; }
+.bg-deep-purple { background-color: $deep-purple !important; }
+.bg-indigo { background-color: $indigo !important; }
+.bg-blue { background-color: $blue !important; }
+.bg-light-blue { background-color: $light-blue !important; }
+.bg-cyan { background-color: $cyan !important; }
+.bg-teal { background-color: $teal !important; }
+.bg-green { background-color: $green !important; }
+.bg-light-green { background-color: $light-green !important; }
+.bg-lime { background-color: $lime !important; }
+.bg-yellow { background-color: $yellow !important; }
+.bg-amber { background-color: $amber !important; }
+.bg-orange { background-color: $orange !important; }
+.bg-deep-orange { background-color: $deep-orange !important; }
+.bg-brown { background-color: $brown !important; }
+.bg-grey { background-color: $grey !important; }
+.bg-blue-grey { background-color: $blue-grey !important; }

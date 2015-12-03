@@ -1,0 +1,159 @@
+// =============================================================================
+// Buttons - Buttons
+// =============================================================================
+
+// Variables
+$button-background-color: $blue;
+$button-text-color: $black;
+
+$button-hover-background-color: $grey;
+$button-hover-text-color: $black;
+
+$button-fancy-background-color: $white;
+$button-fancy-text-color: $black;
+
+$button-fancy-hover-background-color: $grey;
+$button-fancy-hover-text-color: $black;
+
+$button-margin: 0 .5rem .5rem 0;
+$button-padding: 5rem 1rem;
+
+$button-border-color: $grey;
+$button-border-style: solid;
+$button-border-width: 1px;
+
+$button-font-family: $base-font-family;
+$button-font-size: $base-font-size;
+
+$button-radius: 3px;
+
+
+// =============================================================================
+// Buttons Styleguide
+// =============================================================================
+
+/*
+Buttons
+
+markup: <button>Button</button>
+<button class="fancy">
+  <span class="text">Button</span>
+  <i class="fa fa-facebook"></i>
+</button>
+
+Styleguide 2.1
+*/
+
+
+// =============================================================================
+// Buttons Code
+// =============================================================================
+
+button,
+.button,
+.btn {
+  background-color: $button-background-color;
+  border-color: $button-border-color;
+  border-style: $button-border-style;
+  border-width: $button-border-width;
+  border-radius: $button-radius;
+  color: $button-text-color;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $button-font-family;
+  font-size: $button-font-size;
+  margin: $button-margin;
+  overflow: hidden;
+  padding: $button-padding;
+  position: relative;
+
+  &:hover {
+    background-color: $button-hover-background-color;
+    color: $button-hover-text-color;
+  }
+
+  &.l {
+    float: left;
+  }
+
+  &.positive { }
+}
+
+
+// =============================================================================
+// Buttons Code - Alternatives
+// =============================================================================
+
+button,
+.btn {
+  &.fancy {
+    background-color: $button-fancy-background-color;
+    color: $button-fancy-text-color;
+    -webkit-transition: border-color 0.3s, color 0.3s;
+    transition: border-color 0.3s, color 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+
+  	&:before {
+      content: '';
+  		position: absolute;
+  		top: -20%;
+  		left: -20%;
+  		width: 150%;
+  		height: 100%;
+  		background: lighten($button-fancy-hover-background-color, 10%);
+  		z-index: 1;
+  		-webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+  		transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+  		-webkit-transform-origin: 0% 100%;
+  		transform-origin: 0% 100%;
+  		-webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+  		transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+  	}
+
+  	.text {
+  		position: relative;
+  		z-index: 2;
+  	}
+
+  	i {
+  		font-size: 0;
+  		padding-left: 0;
+  		-webkit-transition: all .2s ease-in-out;
+  		transition: all .2s ease-in-out;
+  		position: relative;
+  		z-index: 2;
+  	}
+
+  	&:hover,
+  	&.current {
+      background-color: $button-fancy-background-color;
+  		border-color: $button-fancy-hover-background-color;
+  		color: $button-fancy-hover-text-color;
+
+  		&:before {
+        top: 0;
+        left: 0;
+  			opacity: 1;
+  			background: $button-fancy-hover-background-color;
+  			-webkit-transform: rotate3d(0, 0, 1, 0deg);
+  			transform: rotate3d(0, 0, 1, 0deg);
+  			-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  			transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  		}
+
+  		i {
+  			font-size: 90%;
+  			padding: 0 .5em;
+
+        &:first-child {
+    			padding: 0 .5em 0 0;
+        }
+
+        &:last-child {
+    			padding: 0 0 0 .5em;
+        }
+  		}
+  	}
+  }
+}

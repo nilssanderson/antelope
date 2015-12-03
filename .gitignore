@@ -2,6 +2,7 @@
 
 
 ### Bower ###
+bower
 bower_components
 test/bower_components
 .bower-cache
@@ -56,7 +57,7 @@ node_modules/
 bower_components/
 *.log
 
-build/
+#build/
 dist/
 
 

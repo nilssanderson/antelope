@@ -1,0 +1,74 @@
+// =============================================================================
+// Mixins - Sass Mixins
+// =============================================================================
+
+// Variables
+$smartphone: 480px;
+$tabletPortrait: 767px;
+$tabletLandscape: 1024px;
+$desktop: 1174px;
+$largeScreen: 1400px;
+
+// =============================================================================
+// Mixins Styleguide
+// =============================================================================
+
+/*
+Mixins
+
+markup:
+
+
+Styleguide 3.4
+*/
+
+
+// =============================================================================
+// Mixins Code
+// =============================================================================
+
+// Media queries
+// Breakpoints for each query
+@mixin respondTo($media) {
+  @if $media == smartphone {
+    @media only screen and (max-width: $smartphone) { @content; }
+  }
+  @else if $media == tablet {
+    @media only screen and (min-width: $tabletPortrait) and (max-width: $tabletLandscape) { @content; }
+  }
+  @else if $media == smallScreen {
+    @media only screen and (max-width: $desktop) { @content; }
+  }
+  @else if $media == desktop {
+    @media only screen and (min-width: $desktop) { @content; }
+  }
+  @else if $media == largeScreen {
+    @media only screen and (min-width: $largeScreen) { @content; }
+  }
+}
+
+.mobile {
+  @include respondTo(smartphone) {
+    background: $red;
+  }
+}
+.tablet {
+  @include respondTo(tablet) {
+    background: $blue;
+  }
+}
+.smallScreen {
+  @include respondTo(smallScreen) {
+    background: $yellow;
+  }
+}
+.desktop {
+  @include respondTo(desktop) {
+    background: $green;
+  }
+}
+.largeScreen {
+  @include respondTo(largeScreen) {
+    background: $cyan;
+  }
+}

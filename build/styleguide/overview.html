@@ -1,0 +1,50 @@
+<h1 class="sg" name="antelope">Antelope</h1>
+<blockquote>
+<p class="sg">Starter webapp framework created using the <a href="http://yeoman.io" class="sg">Yeoman</a> generator that scaffolds out a front-end web app using <a href="http://gulpjs.com/" class="sg">Gulp</a> for the build process, <a href="http://foundation.zurb.com/sites" class="sg">Foundation 6</a> for the SCSS framework, <a href="https://garris.github.io/BackstopJS" class="sg">BackstopJS</a> for the automatic regression tests and <a href="http://styleguide.sc5.io/" class="sg">SC5 Style guide generator</a> for creating a living Styleguide.</p>
+</blockquote>
+<h3 class="sg" name="what-is-this-repository-for?">What is this repository for?</h3>
+<p class="sg">Starting development on a new project or adding to an existing project? Install now to have a framework with automation.</p>
+<h3 class="sg" name="what-does-this-repository-do?">What does this repository do?</h3>
+<ul>
+<li class="sg">Built upon Foundation 6 from Zurb - http://foundation.zurb.com/sites/docs/</li>
+<li class="sg">Automating CSS Regression Testing - phantomjs, casperjs and backstopjs</li>
+<li class="sg">Automatic Styleguide creation - SC5 styleguide using KSS notation</li>
+</ul>
+<p class="sg">(Use this link for referencing classes and how to construct HTML pages using the correct classes)</p>
+<h3 class="sg" name="getting-started">Getting Started</h3>
+<p class="sg">To get started download Antelope with Git:</p>
+<pre class="sg"><code>git clone https://github.com/nilssanderson/antelope.git
+cd antelope
+npm install
+bower install
+</code></pre>
+<p class="sg">Then to build the framework:</p>
+<pre class="sg"><code>gulp
+</code></pre>
+<p class="sg">The default task should:</p>
+<ul>
+<li class="sg">Build out a static app</li>
+<li class="sg">Convert SCSS to CSS</li>
+<li class="sg">Generate a SC5 Styleguide based on the SCSS comments</li>
+<li class="sg">Present a UI Elements page</li>
+<li class="sg">Open these in the browser for viewing and updating (Styleguide)</li>
+</ul>
+<p class="sg">Your finished site will be created in a folder called <code>dist</code>, viewable at this URL:</p>
+<pre class="sg"><code>http://localhost:8000
+</code></pre>
+<p class="sg">To create compressed, production-ready assets, run <code>gulp build</code>.</p>
+<h3 class="sg" name="setting-up-the-automatic-css-regression-testing">Setting up the Automatic CSS Regression Testing</h3>
+<p class="sg">Follow the below instructions to set up the BackstopJS tests and update the backstop.json file as needed if one does not exist.
+Open the folder in your command line, and install the needed dependencies:</p>
+<pre class="sg"><code>cd bower_components/BackstopJS
+npm install
+
+cd antelope/bower_components/BackstopJS
+cd ../../
+</code></pre>
+<p class="sg">Run this after any change to the backstop.json file to update the references:</p>
+<pre class="sg"><code>gulp update-tests
+</code></pre>
+<p class="sg">Then to run the tests:</p>
+<pre class="sg"><code>gulp run-tests
+</code></pre>

@@ -1,16 +1,14 @@
 {
-  "name": "foundation-ssg",
+  "name": "antelope",
   "version": "1.0.0",
-  "authors": [
-    "ZURB <foundation@zurb.com>"
-  ],
-  "description": "Static site generator for Foundation for Sites.",
+  "authors": ["Nils Sanderson"],
+  "description": "Starter webapp framework that scaffolds out a front-end web app using Gulp for the build process, Foundation 6 for the SCSS framework, BackstopJS for the automatic regression tests and SC5 Style guide generator for creating a living Styleguide.",
   "main": "gulpfile.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
+    "bower",
     "test",
     "tests"
   ],

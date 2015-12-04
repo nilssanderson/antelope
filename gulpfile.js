@@ -22,7 +22,10 @@ var backstopJS        = './bower/BackstopJS/gulp/tasks';
 var reference         = ['reference'];
 var test              = ['test'];
 var isProduction      = !!(argv.production);
-var PORT              = 8000;
+var PORT              = 3010;
+var UI_PORT           = 3020;
+var STYLEGUIDE_PORT   = 3030;
+// For reference 3040 - bower/BackstopJS/server.js port
 var COMPATIBILITY     = ['last 2 versions', 'ie >= 9'];
 
 // Paths
@@ -47,7 +50,7 @@ var PATHS = {
     assetPath + '/scss/app.scss'],
 
   scripts: [
-    bowerPath + '/jquery/dist/jquery.js',
+    bowerPath + '/jquery/dist/jquery.min.js',
     bowerPath + '/what-input/what-input.js',
     bowerPath + '/foundation-sites/js/foundation.core.js',
     bowerPath + '/foundation-sites/js/foundation.util.*.js',
@@ -182,7 +185,7 @@ gulp.task('styleguide:generate', function() {
         },
         title: 'Antelope - Styleguide',
         server: true,
-        port: 3007,
+        port: STYLEGUIDE_PORT,
         rootPath: buildPath + '/styleguide/',
         overviewPath: 'README.md'
       }))
@@ -218,9 +221,9 @@ gulp.task('update-tests', function() {
   process.chdir(backstopJS);
   var child = spawn('gulp', reference);
   child.stdout.on('data', function(data) {
-      if (data) {
-          console.log(data.toString())
-      }
+    if (data) {
+      console.log(data.toString())
+    }
   });
 });
 
@@ -228,9 +231,9 @@ gulp.task('run-tests', function() {
   process.chdir(backstopJS);
   var child = spawn('gulp', test);
   child.stdout.on('data', function(data) {
-      if (data) {
-          console.log(data.toString())
-      }
+    if (data) {
+      console.log(data.toString())
+    }
   });
 });
 
@@ -242,14 +245,22 @@ gulp.task('build', function(done) {
 // Start a server with LiveReload to preview the site in
 gulp.task('server', ['build'], function() {
   browser.init({
-    server: buildPath, port: PORT
+    server: buildPath,
+    port: PORT,
+    ui: {
+      port: UI_PORT
+    }
   });
 });
 
 // Dynamic server
 gulp.task('dynamic-server', ['build'], function() {
   browser.init({
-    proxy: dynamicServerURL
+    proxy: dynamicServerURL,
+    port: PORT,
+    ui: {
+      port: UI_PORT
+    }
   });
 });
 
@@ -258,7 +269,7 @@ gulp.task('default', ['build', 'server'], function() {
   gulp.watch(PATHS.assets, ['copy', browser.reload]);
   gulp.watch([srcPath + '/pages/**/*.html'], ['pages', browser.reload]);
   gulp.watch([srcPath + '/{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
-  gulp.watch([assetPath + '/scss/**/*.scss'], ['sass', browser.reload]);
+  gulp.watch([assetPath + '/scss/**/*.scss'], ['sass', 'styleguide', browser.reload]);
   gulp.watch([assetPath + '/js/**/*.js'], ['javascript', browser.reload]);
   gulp.watch([assetPath + '/img/**/*'], ['images', browser.reload]);
   gulp.watch([srcPath + '/styleguide/**'], ['styleguide', browser.reload]);
@@ -269,7 +280,7 @@ gulp.task('dynamic', ['build', 'dynamic-server'], function() {
   gulp.watch(PATHS.assets, ['copy', browser.reload]);
   gulp.watch([srcPath + '/pages/**/*.html'], ['pages', browser.reload]);
   gulp.watch([srcPath + '/{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
-  gulp.watch([assetPath + '/scss/**/*.scss'], ['sass', browser.reload]);
+  gulp.watch([assetPath + '/scss/**/*.scss'], ['sass', 'styleguide', browser.reload]);
   gulp.watch([assetPath + '/js/**/*.js'], ['javascript', browser.reload]);
   gulp.watch([assetPath + '/img/**/*'], ['images', browser.reload]);
   gulp.watch([srcPath + '/styleguide/**'], ['styleguide', browser.reload]);

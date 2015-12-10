@@ -1,4 +1,4 @@
-# [Antelope](https://github.com/nilssanderson/antelope) #
+# Antelope #
 
 > Starter webapp framework created using the [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [Gulp](http://gulpjs.com/) for the build process, [Foundation 6](http://foundation.zurb.com/sites) for the SCSS framework, [BackstopJS](https://garris.github.io/BackstopJS) for the automatic regression tests and [SC5 Style guide generator](http://styleguide.sc5.io/) for creating a living Styleguide.
 

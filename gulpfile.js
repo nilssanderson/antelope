@@ -29,54 +29,64 @@ var STYLEGUIDE_PORT   = 3030;
 var COMPATIBILITY     = ['last 2 versions', 'ie >= 9'];
 
 // Paths
+var corePath          = '_core';
 var srcPath           = 'src';
 var buildPath         = 'build';
 var bowerPath         = 'bower';
-var assetPath         = srcPath + '/assets';
 
 // Server URL
 var dynamicServerURL  = 'http://sitename.local';
 
 // File paths to various assets are defined here.
-var PATHS = {
-  assets: [
-    assetPath + '/**/*',
-    '!' + assetPath + '/{!img,js,scss}/**/*'],
-
+var CORE_PATHS = {
   sass: [
-    bowerPath + '/foundation-sites/scss',
+    bowerPath + '/foundation/scss',
     bowerPath + '/motion-ui/src/',
-    // Path to app SCSS
-    assetPath + '/scss/app.scss'],
+    // Path to core SCSS
+    corePath + '/scss/core.scss'],
 
   scripts: [
     bowerPath + '/jquery/dist/jquery.min.js',
     bowerPath + '/what-input/what-input.js',
-    bowerPath + '/foundation-sites/js/foundation.core.js',
-    bowerPath + '/foundation-sites/js/foundation.util.*.js',
+    bowerPath + '/foundation/js/foundation.core.js',
+    bowerPath + '/foundation/js/foundation.util.*.js',
     // Paths to individual JS components defined below
-    bowerPath + '/foundation-sites/js/foundation.abide.js',
-    bowerPath + '/foundation-sites/js/foundation.accordion.js',
-    bowerPath + '/foundation-sites/js/foundation.accordionMenu.js',
-    bowerPath + '/foundation-sites/js/foundation.drilldown.js',
-    bowerPath + '/foundation-sites/js/foundation.dropdown.js',
-    bowerPath + '/foundation-sites/js/foundation.dropdownMenu.js',
-    bowerPath + '/foundation-sites/js/foundation.equalizer.js',
-    bowerPath + '/foundation-sites/js/foundation.interchange.js',
-    bowerPath + '/foundation-sites/js/foundation.magellan.js',
-    bowerPath + '/foundation-sites/js/foundation.offcanvas.js',
-    bowerPath + '/foundation-sites/js/foundation.orbit.js',
-    bowerPath + '/foundation-sites/js/foundation.responsiveMenu.js',
-    bowerPath + '/foundation-sites/js/foundation.responsiveToggle.js',
-    bowerPath + '/foundation-sites/js/foundation.reveal.js',
-    bowerPath + '/foundation-sites/js/foundation.slider.js',
-    bowerPath + '/foundation-sites/js/foundation.sticky.js',
-    bowerPath + '/foundation-sites/js/foundation.tabs.js',
-    bowerPath + '/foundation-sites/js/foundation.toggler.js',
-    bowerPath + '/foundation-sites/js/foundation.tooltip.js',
+    bowerPath + '/foundation/js/foundation.abide.js',
+    bowerPath + '/foundation/js/foundation.accordion.js',
+    bowerPath + '/foundation/js/foundation.accordionMenu.js',
+    bowerPath + '/foundation/js/foundation.drilldown.js',
+    bowerPath + '/foundation/js/foundation.dropdown.js',
+    bowerPath + '/foundation/js/foundation.dropdownMenu.js',
+    bowerPath + '/foundation/js/foundation.equalizer.js',
+    bowerPath + '/foundation/js/foundation.interchange.js',
+    bowerPath + '/foundation/js/foundation.magellan.js',
+    bowerPath + '/foundation/js/foundation.offcanvas.js',
+    bowerPath + '/foundation/js/foundation.orbit.js',
+    bowerPath + '/foundation/js/foundation.responsiveMenu.js',
+    bowerPath + '/foundation/js/foundation.responsiveToggle.js',
+    bowerPath + '/foundation/js/foundation.reveal.js',
+    bowerPath + '/foundation/js/foundation.slider.js',
+    bowerPath + '/foundation/js/foundation.sticky.js',
+    bowerPath + '/foundation/js/foundation.tabs.js',
+    bowerPath + '/foundation/js/foundation.toggler.js',
+    bowerPath + '/foundation/js/foundation.tooltip.js',
     // Paths to app JS
-    assetPath + '/js/**/*.js',
-    assetPath + '/js/app.js']
+    corePath + '/js/**/*.js']
+}
+
+var PATHS = {
+  assets: [
+    srcPath + '/**/*',
+    '!' + srcPath + '/{!img,js,scss}/**/*'],
+
+  sass: [
+    // Path to app SCSS
+    srcPath + '/scss/app.scss'],
+
+  scripts: [
+    // Paths to app JS
+    srcPath + '/js/**/*.js',
+    srcPath + '/js/app.js']
 };
 
 // Delete the "dist" folder
@@ -94,13 +104,13 @@ gulp.task('copy', function() {
 
 // Copy page templates into finished HTML files
 gulp.task('pages', function() {
-  gulp.src(srcPath + '/pages/**/*.{html,hbs,handlebars}')
+  gulp.src('pages/**/*.{html,hbs,handlebars}')
     .pipe(panini({
-      root: srcPath + '/pages/',
-      layouts: srcPath + '/layouts/',
-      partials: srcPath + '/partials/',
-      data: srcPath + '/data/',
-      helpers: srcPath + '/helpers/'
+      root: 'pages/',
+      layouts: 'layouts/',
+      partials: 'partials/',
+      data: 'data/',
+      helpers: 'helpers/'
     }))
     .pipe(gulp.dest(buildPath));
 });
@@ -113,9 +123,9 @@ gulp.task('pages:reset', function(cb) {
 
 // Compile Sass into CSS
 // In production, the CSS is compressed
-gulp.task('sass', function() {
+gulp.task('coreSass', function() {
   var uncss = $.if(isProduction, $.uncss({
-    html: [srcPath + '/**/*.html'],
+    html: ['**/*.html'],
     ignore: [
       new RegExp('^meta\..*'),
       new RegExp('^\.is-.*')
@@ -124,10 +134,10 @@ gulp.task('sass', function() {
 
   var minifycss = $.if(isProduction, $.minifyCss());
 
-  return gulp.src(assetPath + '/scss/app.scss')
+  return gulp.src(corePath + '/scss/core.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
-      includePaths: PATHS.sass
+      includePaths: CORE_PATHS.sass
     })
     .on('error', $.sass.logError))
     .pipe($.autoprefixer({
@@ -139,20 +149,60 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(buildPath + '/assets/css'));
 });
 
+gulp.task('sass', function() {
+  var uncss = $.if(isProduction, $.uncss({
+    html: ['**/*.html'],
+    ignore: [
+      new RegExp('^meta\..*'),
+      new RegExp('^\.is-.*')
+    ]
+  }));
+
+  var minifycss = $.if(isProduction, $.minifyCss());
+
+  return gulp.src(srcPath + '/scss/app.scss')
+  .pipe($.sourcemaps.init())
+  .pipe($.sass({
+    includePaths: PATHS.sass
+  })
+  .on('error', $.sass.logError))
+  .pipe($.autoprefixer({
+    browsers: COMPATIBILITY
+  }))
+  .pipe(uncss)
+  .pipe(minifycss)
+  .pipe($.if(!isProduction, $.sourcemaps.write()))
+  .pipe(gulp.dest(buildPath + '/assets/css'));
+});
+
 // Combine JavaScript into one file
 // In production, the file is minified
+gulp.task('coreJavascript', function() {
+  var uglify = $.if(isProduction, $.uglify()
+    .on('error', function (e) {
+      console.log(e);
+    }));
+
+  return gulp.src(CORE_PATHS.scripts)
+    .pipe($.sourcemaps.init())
+    .pipe($.concat('core.js'))
+    .pipe(uglify)
+    .pipe($.if(!isProduction, $.sourcemaps.write()))
+    .pipe(gulp.dest(buildPath + '/assets/js'));
+});
+
 gulp.task('javascript', function() {
   var uglify = $.if(isProduction, $.uglify()
     .on('error', function (e) {
       console.log(e);
     }));
 
-  return gulp.src(PATHS.scripts)
-    .pipe($.sourcemaps.init())
-    .pipe($.concat('app.js'))
-    .pipe(uglify)
-    .pipe($.if(!isProduction, $.sourcemaps.write()))
-    .pipe(gulp.dest(buildPath + '/assets/js'));
+    return gulp.src(PATHS.scripts)
+      .pipe($.sourcemaps.init())
+      .pipe($.concat('app.js'))
+      .pipe(uglify)
+      .pipe($.if(!isProduction, $.sourcemaps.write()))
+      .pipe(gulp.dest(buildPath + '/assets/js'));
 });
 
 // Copy images to the "dist" folder
@@ -162,7 +212,7 @@ gulp.task('images', function() {
     progressive: true
   }));
 
-  return gulp.src(assetPath + '/img/**/*')
+  return gulp.src(srcPath + '/img/**/*')
     .pipe(imagemin)
     .pipe(gulp.dest(buildPath + '/assets/img'));
 });
@@ -170,13 +220,13 @@ gulp.task('images', function() {
 // Styleguide
 gulp.task('styleguide:generate', function() {
   return gulp.src([
-      assetPath + '/scss/base/*.scss',
-      assetPath + '/scss/components/*.scss',
-      assetPath + '/scss/helpers/*.scss',
-      assetPath + '/scss/layout/*.scss',
-      assetPath + '/scss/pages/*.scss',
-      assetPath + '/scss/themes/*.scss',
-      assetPath + '/scss/_overview.scss'
+      srcPath + '/scss/base/*.scss',
+      srcPath + '/scss/components/*.scss',
+      srcPath + '/scss/helpers/*.scss',
+      srcPath + '/scss/layout/*.scss',
+      srcPath + '/scss/pages/*.scss',
+      srcPath + '/scss/themes/*.scss',
+      srcPath + '/scss/_overview.scss'
     ])
     .pipe(styleguide.generate({
         basicAuth: {
@@ -194,12 +244,12 @@ gulp.task('styleguide:generate', function() {
 
 gulp.task('styleguide:applystyles', function() {
   return gulp.src([
-      assetPath + '/scss/base/*.scss',
-      assetPath + '/scss/components/*.scss',
-      assetPath + '/scss/helpers/*.scss',
-      assetPath + '/scss/layout/*.scss',
-      assetPath + '/scss/pages/*.scss',
-      assetPath + '/scss/themes/*.scss'
+      srcPath + '/scss/base/*.scss',
+      srcPath + '/scss/components/*.scss',
+      srcPath + '/scss/helpers/*.scss',
+      srcPath + '/scss/layout/*.scss',
+      srcPath + '/scss/pages/*.scss',
+      srcPath + '/scss/themes/*.scss'
     ])
     .pipe(sass({
       errLogToConsole: true
@@ -239,7 +289,7 @@ gulp.task('run-tests', function() {
 
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function(done) {
-  sequence('clean', ['pages', 'sass', 'javascript', 'images', 'copy'], 'styleguide', done);
+  sequence('clean', ['pages', 'coreSass', 'sass', 'coreJavascript', 'javascript', 'images', 'copy'], 'styleguide', done);
 });
 
 // Start a server with LiveReload to preview the site in
@@ -267,21 +317,21 @@ gulp.task('dynamic-server', ['build'], function() {
 // Build the site, run the server, and watch for file changes
 gulp.task('default', ['build', 'server'], function() {
   gulp.watch(PATHS.assets, ['copy', browser.reload]);
-  gulp.watch([srcPath + '/pages/**/*.html'], ['pages', browser.reload]);
-  gulp.watch([srcPath + '/{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
-  gulp.watch([assetPath + '/scss/**/*.scss'], ['sass', 'styleguide', browser.reload]);
-  gulp.watch([assetPath + '/js/**/*.js'], ['javascript', browser.reload]);
-  gulp.watch([assetPath + '/img/**/*'], ['images', browser.reload]);
-  gulp.watch([srcPath + '/styleguide/**'], ['styleguide', browser.reload]);
+  gulp.watch(['pages/**/*.html'], ['pages', browser.reload]);
+  gulp.watch(['{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
+  gulp.watch([srcPath + '/scss/**/*.scss'], ['coreSass', 'sass', 'styleguide', browser.reload]);
+  gulp.watch([srcPath + '/js/**/*.js'], ['coreJavascript', 'javascript', browser.reload]);
+  gulp.watch([srcPath + '/img/**/*'], ['images', browser.reload]);
+  gulp.watch([corePath + 'styleguide/**'], ['styleguide', browser.reload]);
 });
 
 // Build the site, run the dynamic server, and watch for file changes
 gulp.task('dynamic', ['build', 'dynamic-server'], function() {
   gulp.watch(PATHS.assets, ['copy', browser.reload]);
-  gulp.watch([srcPath + '/pages/**/*.html'], ['pages', browser.reload]);
-  gulp.watch([srcPath + '/{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
-  gulp.watch([assetPath + '/scss/**/*.scss'], ['sass', 'styleguide', browser.reload]);
-  gulp.watch([assetPath + '/js/**/*.js'], ['javascript', browser.reload]);
-  gulp.watch([assetPath + '/img/**/*'], ['images', browser.reload]);
-  gulp.watch([srcPath + '/styleguide/**'], ['styleguide', browser.reload]);
+  gulp.watch(['pages/**/*.html'], ['pages', browser.reload]);
+  gulp.watch(['{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
+  gulp.watch([srcPath + '/scss/**/*.scss'], ['coreSass', 'sass', 'styleguide', browser.reload]);
+  gulp.watch([srcPath + '/js/**/*.js'], ['coreJavascript', 'javascript', browser.reload]);
+  gulp.watch([srcPath + '/img/**/*'], ['images', browser.reload]);
+  gulp.watch([corePath + 'styleguide/**'], ['styleguide', browser.reload]);
 });

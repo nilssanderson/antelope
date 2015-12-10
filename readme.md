@@ -70,3 +70,17 @@ Then to run the tests:
 ```
 gulp run-tests
 ```
+
+### Adding the framework as a sub-module ###
+
+Follow the below instructions to add the framework to an already existing project and to keep it separate from your current repository:
+```
+git submodule add https://github.com/nilssanderson/antelope.git antelope
+git submodule init
+git submodule update
+```
+
+Run this if there have been any updates to the Antelope framework to pull down the latest changes:
+```
+git submodule update
+```

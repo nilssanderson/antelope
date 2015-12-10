@@ -95,3 +95,12 @@ Run this if there have been any updates to the [Antelope](https://github.com/nil
 ```
 git submodule update
 ```
+
+A detached HEAD state may occur when updating a submodule. Once an update has been run, just make sure that the submodule is tracking the `master` branch:
+```
+cd antelope
+git checkout master
+```
+
+> Some more info that could be looked into in regards to improving submodule addition:
+ [Stackoverflow - Answer 1](http://stackoverflow.com/questions/1777854/git-submodules-specify-a-branch-tag/18797720#18797720) and [Stackoverflow - Answer 2](http://stackoverflow.com/questions/1777854/git-submodules-specify-a-branch-tag/18799234#18799234)

@@ -41,7 +41,7 @@ var COMPATIBILITY     = ['last 2 versions', 'ie >= 9'];
 // =============================================================================
 var corePath          = '_core';
 var srcPath           = 'src';
-var htmlPath          = 'html';
+var htmlPath          = 'markup';
 var buildPath         = 'build';
 var bowerPath         = 'bower';
 

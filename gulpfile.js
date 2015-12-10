@@ -1,4 +1,8 @@
+// =============================================================================
+// Include plugins
+// =============================================================================
 var $                 = require('gulp-load-plugins')();
+var gutil             = require('gulp-util');
 var argv              = require('yargs').argv;
 var browser           = require('browser-sync');
 var gulp              = require('gulp');
@@ -11,12 +15,15 @@ var sass              = require('gulp-sass');
 var requireDir        = require('require-dir');
 var concat            = require('gulp-concat');
 
+
+// =============================================================================
 // Use `spawn` to execute shell command using Node
 // The directory that contains the Gulpfile whose task needs to be run.
 // Gulp tasks that need to be run.
 // Check for --production flag
 // Port to use for the development server.
 // Browsers to target when prefixing CSS.
+// =============================================================================
 var spawn             = require('child_process').spawn;
 var backstopJS        = './bower/BackstopJS/gulp/tasks';
 var reference         = ['reference'];
@@ -28,16 +35,26 @@ var STYLEGUIDE_PORT   = 3030;
 // For reference 3040 - bower/BackstopJS/server.js port
 var COMPATIBILITY     = ['last 2 versions', 'ie >= 9'];
 
+
+// =============================================================================
 // Paths
+// =============================================================================
 var corePath          = '_core';
 var srcPath           = 'src';
+var htmlPath          = 'html';
 var buildPath         = 'build';
 var bowerPath         = 'bower';
 
+
+// =============================================================================
 // Server URL
+// =============================================================================
 var dynamicServerURL  = 'http://sitename.local';
 
+
+// =============================================================================
 // File paths to various assets are defined here.
+// =============================================================================
 var CORE_PATHS = {
   sass: [
     bowerPath + '/foundation/scss',
@@ -89,28 +106,37 @@ var PATHS = {
     srcPath + '/js/app.js']
 };
 
-// Delete the "dist" folder
+
+// =============================================================================
+// Delete the buildPath folder
 // This happens every time a build starts
+// =============================================================================
 gulp.task('clean', function(done) {
   rimraf(buildPath, done);
 });
 
+
+// =============================================================================
 // Copy files out of the assets folder
 // This task skips over the "img", "js", and "scss" folders, which are parsed separately
+// =============================================================================
 gulp.task('copy', function() {
   gulp.src(PATHS.assets)
     .pipe(gulp.dest(buildPath + '/assets'));
 });
 
+
+// =============================================================================
 // Copy page templates into finished HTML files
+// =============================================================================
 gulp.task('pages', function() {
-  gulp.src('pages/**/*.{html,hbs,handlebars}')
+  gulp.src(htmlPath + '/pages/**/*.{html,hbs,handlebars}')
     .pipe(panini({
-      root: 'pages/',
-      layouts: 'layouts/',
-      partials: 'partials/',
-      data: 'data/',
-      helpers: 'helpers/'
+      root: htmlPath + '/pages/',
+      layouts: htmlPath + '/layouts/',
+      partials: htmlPath + '/partials/',
+      data: htmlPath + '/data/',
+      helpers: htmlPath + '/helpers/'
     }))
     .pipe(gulp.dest(buildPath));
 });
@@ -121,11 +147,15 @@ gulp.task('pages:reset', function(cb) {
   cb();
 });
 
+
+// =============================================================================
 // Compile Sass into CSS
 // In production, the CSS is compressed
+// Runs 2 tasks, a core and a src as to seperate the core updates
+// =============================================================================
 gulp.task('coreSass', function() {
   var uncss = $.if(isProduction, $.uncss({
-    html: ['**/*.html'],
+    html: [htmlPath + '/**/*.html'],
     ignore: [
       new RegExp('^meta\..*'),
       new RegExp('^\.is-.*')
@@ -151,7 +181,7 @@ gulp.task('coreSass', function() {
 
 gulp.task('sass', function() {
   var uncss = $.if(isProduction, $.uncss({
-    html: ['**/*.html'],
+    html: [htmlPath + '/**/*.html'],
     ignore: [
       new RegExp('^meta\..*'),
       new RegExp('^\.is-.*')
@@ -175,8 +205,12 @@ gulp.task('sass', function() {
   .pipe(gulp.dest(buildPath + '/assets/css'));
 });
 
+
+// =============================================================================
 // Combine JavaScript into one file
 // In production, the file is minified
+// Runs 2 tasks, a core and a src as to seperate the core updates
+// =============================================================================
 gulp.task('coreJavascript', function() {
   var uglify = $.if(isProduction, $.uglify()
     .on('error', function (e) {
@@ -205,8 +239,11 @@ gulp.task('javascript', function() {
       .pipe(gulp.dest(buildPath + '/assets/js'));
 });
 
-// Copy images to the "dist" folder
+
+// =============================================================================
+// Copy images to the buildPath folder
 // In production, the images are compressed
+// =============================================================================
 gulp.task('images', function() {
   var imagemin = $.if(isProduction, $.imagemin({
     progressive: true
@@ -217,7 +254,10 @@ gulp.task('images', function() {
     .pipe(gulp.dest(buildPath + '/assets/img'));
 });
 
+
+// =============================================================================
 // Styleguide
+// =============================================================================
 gulp.task('styleguide:generate', function() {
   return gulp.src([
       srcPath + '/scss/base/*.scss',
@@ -266,7 +306,10 @@ gulp.task('watch', ['styleguide'], function() {
 
 gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles']);
 
+
+// =============================================================================
 // Regression tests
+// =============================================================================
 gulp.task('update-tests', function() {
   process.chdir(backstopJS);
   var child = spawn('gulp', reference);
@@ -287,12 +330,18 @@ gulp.task('run-tests', function() {
   });
 });
 
-// Build the "dist" folder by running all of the above tasks
+
+// =============================================================================
+// Build the buildPath folder by running all of the above tasks
+// =============================================================================
 gulp.task('build', function(done) {
   sequence('clean', ['pages', 'coreSass', 'sass', 'coreJavascript', 'javascript', 'images', 'copy'], 'styleguide', done);
 });
 
+
+// =============================================================================
 // Start a server with LiveReload to preview the site in
+// =============================================================================
 gulp.task('server', ['build'], function() {
   browser.init({
     server: buildPath,
@@ -303,7 +352,10 @@ gulp.task('server', ['build'], function() {
   });
 });
 
-// Dynamic server
+
+// =============================================================================
+// Start a dyancmic server with LiveReload to proxy the site in
+// =============================================================================
 gulp.task('dynamic-server', ['build'], function() {
   browser.init({
     proxy: dynamicServerURL,
@@ -314,22 +366,28 @@ gulp.task('dynamic-server', ['build'], function() {
   });
 });
 
+
+// =============================================================================
 // Build the site, run the server, and watch for file changes
+// =============================================================================
 gulp.task('default', ['build', 'server'], function() {
   gulp.watch(PATHS.assets, ['copy', browser.reload]);
-  gulp.watch(['pages/**/*.html'], ['pages', browser.reload]);
-  gulp.watch(['{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
+  gulp.watch([htmlPath + '/pages/**/*.html'], ['pages', browser.reload]);
+  gulp.watch([htmlPath + '/{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
   gulp.watch([srcPath + '/scss/**/*.scss'], ['coreSass', 'sass', 'styleguide', browser.reload]);
   gulp.watch([srcPath + '/js/**/*.js'], ['coreJavascript', 'javascript', browser.reload]);
   gulp.watch([srcPath + '/img/**/*'], ['images', browser.reload]);
   gulp.watch([corePath + 'styleguide/**'], ['styleguide', browser.reload]);
 });
 
-// Build the site, run the dynamic server, and watch for file changes
+
+// =============================================================================
+// Proxy the site, run the dynamic server, and watch for file changes
+// =============================================================================
 gulp.task('dynamic', ['build', 'dynamic-server'], function() {
   gulp.watch(PATHS.assets, ['copy', browser.reload]);
-  gulp.watch(['pages/**/*.html'], ['pages', browser.reload]);
-  gulp.watch(['{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
+  gulp.watch([htmlPath + '/pages/**/*.html'], ['pages', browser.reload]);
+  gulp.watch([htmlPath + '/{layouts,partials}/**/*.html'], ['pages:reset', browser.reload]);
   gulp.watch([srcPath + '/scss/**/*.scss'], ['coreSass', 'sass', 'styleguide', browser.reload]);
   gulp.watch([srcPath + '/js/**/*.js'], ['coreJavascript', 'javascript', browser.reload]);
   gulp.watch([srcPath + '/img/**/*'], ['images', browser.reload]);

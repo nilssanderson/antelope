@@ -57,8 +57,9 @@ node_modules/
 bower_components/
 *.log
 
-#build/
+build/
 dist/
+tests/
 
 
 ### Mac ###

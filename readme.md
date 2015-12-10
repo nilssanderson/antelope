@@ -40,11 +40,11 @@ The default task should:
 * Present a UI Elements page
 * Open these in the browser for viewing and updating (Styleguide)
 
-Your finished site will be created in a folder called `build`, viewable at this URL: http://localhost:3010
+Your finished site will be created in a folder called `build`, viewable at this URL: [http://localhost:3010](http://localhost:3010)
 
-* Browsersync settings: http://localhost:3020
-* Automatic styleguide: http://localhost:3030
-* Regression tests: http://localhost:3040
+* Browsersync settings: [http://localhost:3020](http://localhost:3020)
+* Automatic styleguide: [http://localhost:3030](http://localhost:3030)
+* Regression tests: [http://localhost:3040](http://localhost:3040)
 
 To create compressed, production-ready assets, run:
 ```

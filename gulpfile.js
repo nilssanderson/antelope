@@ -266,7 +266,7 @@ gulp.task('styleguide:generate', function() {
       srcPath + '/scss/layout/*.scss',
       srcPath + '/scss/pages/*.scss',
       srcPath + '/scss/themes/*.scss',
-      srcPath + '/scss/_overview.scss'
+      srcPath + '/scss/vendors/_overview.scss' // Layout of the styleguide tabs
     ])
     .pipe(styleguide.generate({
         basicAuth: {
@@ -277,7 +277,7 @@ gulp.task('styleguide:generate', function() {
         server: true,
         port: STYLEGUIDE_PORT,
         rootPath: buildPath + '/styleguide/',
-        overviewPath: 'README.md'
+        overviewPath: 'readme.md'
       }))
     .pipe(gulp.dest(buildPath + '/styleguide/'));
 });

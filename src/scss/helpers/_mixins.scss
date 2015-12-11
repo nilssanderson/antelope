@@ -3,11 +3,11 @@
 // =============================================================================
 
 // Variables
-$smartphone: 480px;
-$tabletPortrait: 767px;
-$tabletLandscape: 1024px;
-$desktop: 1174px;
-$largeScreen: 1400px;
+$small: 480px;
+$medium: 767px;
+$large: 1024px;
+$xlarge: 1174px;
+$xxlarge: 1400px;
 
 // =============================================================================
 // Mixins Styleguide
@@ -30,45 +30,46 @@ Styleguide 3.4
 // Media queries
 // Breakpoints for each query
 @mixin respondTo($media) {
-  @if $media == smartphone {
-    @media only screen and (max-width: $smartphone) { @content; }
+  @if $media == small {
+    @media only screen and (min-width: $small) { @content; }
   }
-  @else if $media == tablet {
-    @media only screen and (min-width: $tabletPortrait) and (max-width: $tabletLandscape) { @content; }
+  @else if $media == medium {
+    @media only screen and (min-width: $medium) { @content; }
   }
-  @else if $media == smallScreen {
-    @media only screen and (max-width: $desktop) { @content; }
+  @else if $media == large {
+    @media only screen and (min-width: $large) { @content; }
   }
-  @else if $media == desktop {
-    @media only screen and (min-width: $desktop) { @content; }
+  @else if $media == xlarge {
+    @media only screen and (min-width: $xlarge) { @content; }
   }
-  @else if $media == largeScreen {
-    @media only screen and (min-width: $largeScreen) { @content; }
+  @else if $media == xxlarge {
+    @media only screen and (min-width: $xxlarge) { @content; }
   }
 }
 
-.mobile {
-  @include respondTo(smartphone) {
+// Tests
+.small {
+  @include respondTo(small) {
     background: $red;
   }
 }
-.tablet {
-  @include respondTo(tablet) {
+.medium {
+  @include respondTo(medium) {
     background: $blue;
   }
 }
-.smallScreen {
-  @include respondTo(smallScreen) {
+.large {
+  @include respondTo(large) {
     background: $yellow;
   }
 }
-.desktop {
-  @include respondTo(desktop) {
+.xlarge {
+  @include respondTo(xlarge) {
     background: $green;
   }
 }
-.largeScreen {
-  @include respondTo(largeScreen) {
-    background: $cyan;
+.xxlarge {
+  @include respondTo(xxlarge) {
+    background: $orange;
   }
 }

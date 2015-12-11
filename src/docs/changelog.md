@@ -8,3 +8,9 @@ Initial release.
 
 Updated documentation.
 Rearranged file and folder structure.
+
+## Version 1.2 (December 11, 2015)
+
+Updated breakpoint `_mixin`.
+Moved styleguide layout `_overview` into src/vendors.
+Moved foundation settings `_settings` into src.
